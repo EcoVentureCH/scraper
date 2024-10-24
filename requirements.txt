@@ -1,0 +1,5 @@
+curl_cffi
+rich
+pydantic
+pandas
+requests
