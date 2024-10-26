@@ -5,7 +5,7 @@ not_amount_pattern = re.compile(r'[^0-9\,\.\-]+')
 not_digits_pattern = re.compile(r'[^0-9]+')
 
 def parse_amount(string):
-    if not string:
+    if not string or not isinstance(string, str):
         return -1
     
     digits = re.sub(not_digits_pattern, '', string)
@@ -59,6 +59,8 @@ def parse_amount(string):
 
 
 def parse_currency(string):
+    if not isinstance(string, str):
+        return "UNKNOWN"
     string = string.lower()
     if "€" in string or "euro" in string or "eur" in string:
         return "EUR"
@@ -74,9 +76,9 @@ def parse_currency(string):
     
     return ""
 
+
 def parse_amount_and_currency(string):
     return parse_amount(string), parse_currency(string)
-
 
 if __name__ == "__main__":
 

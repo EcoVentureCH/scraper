@@ -42,7 +42,7 @@ def main():
                 print(f"{f}", end=" ")
                 project_datas = main_func()
                 if not project_datas:
-                    raise AttributeError(f"\nmake sure your script's ({script_path}) main() function returns a list of Project!") from e
+                    raise AttributeError(f"\nmake sure your script's ({script_path}) main() function returns a list of Project!")
         
                 changed = manager.update_csv(project_datas, csv_filename=csv_filename)
                 if changed:

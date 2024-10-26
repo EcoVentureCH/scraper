@@ -3,3 +3,4 @@ rich
 pydantic
 pandas
 requests
+bs4
