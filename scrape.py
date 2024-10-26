@@ -59,6 +59,9 @@ def run_site(sites, site_name):
 
         print()
         print(project_datas)
+
+        print(f"{site}/{f}: scraped {len(project_datas)} projects")
+
     return True
     
 def main():

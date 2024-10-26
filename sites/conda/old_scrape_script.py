@@ -35,8 +35,6 @@ def main():
     project_urls = re.findall(regex_projects_urls, html_project_page, re.MULTILINE)
 
     projects = []
-
-    print(project_urls)
     
     for i, project_url in enumerate(project_urls):
 
@@ -45,7 +43,6 @@ def main():
             print(f"WARNING: got status_code {result.status_code} on site '{result.url}'")
             continue
         html = result.content.decode(result.encoding)
-        print(html)
         
         data = scrape_functions.extract_all(data_to_extract, html)
         
