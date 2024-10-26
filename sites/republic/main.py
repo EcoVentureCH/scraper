@@ -5,6 +5,8 @@ from rich import print
 
 from src.models import Project
 
+base_url = "https://europe.republic.com/"
+
 # what we can read from api
 class RepublicProject(BaseModel):
     name: str
@@ -16,14 +18,16 @@ class RepublicProject(BaseModel):
     status: str
     allowed_to_invest: bool
     address: dict | None
+    slug: str
     id: int
+    listed: bool
 
     def convert(self) -> Project:
         cc = "gb" if not self.address else self.address["country"].lower()
         return Project(
             name = self.name,
             name_short = self.name,
-            external_link = str(self.id),
+            external_link = base_url + self.slug,
             external_image_link = self.cover_image["cropped_location"],
             currency = self.currency,
             funding_current = self.investment_raised["amount_in_cents"], 
@@ -41,7 +45,9 @@ def main():
     projects = []
     for p in response.json()["result"]:
         r_proj = RepublicProject(**p)
-        projects.append(r_proj.convert())
+        if r_proj.listed:
+            project = r_proj.convert()
+            projects.append(project)
     return projects
     
 if __name__ == "__main__":

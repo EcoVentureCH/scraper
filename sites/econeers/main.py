@@ -13,6 +13,7 @@ class EconeersProject(BaseModel):
     sum: int
     threshold: int
     goal: int
+    status: str
     
     def convert(self) -> Project:
         return Project(
@@ -37,6 +38,8 @@ def main():
     for p in response.json():
         e_proj = EconeersProject(**p)
         if e_proj.link == "" or e_proj.sum == 0:
+            continue
+        if e_proj.status == "preview" or e_proj.status == "current":
             continue
         projects.append(e_proj.convert())
     return projects
