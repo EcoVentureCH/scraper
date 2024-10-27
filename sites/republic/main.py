@@ -2,7 +2,7 @@ import os
 from curl_cffi import requests
 from pydantic import BaseModel, Field
 from rich import print
-
+from datetime import datetime, date
 from src.models import Project
 
 base_url = "https://europe.republic.com/"
@@ -21,6 +21,8 @@ class RepublicProject(BaseModel):
     slug: str
     id: int
     listed: bool
+    expires_at: datetime | None
+    externally_approved_at: datetime | None
 
     def convert(self) -> Project:
         cc = "gb" if not self.address else self.address["country"].lower()
@@ -33,6 +35,8 @@ class RepublicProject(BaseModel):
             funding_current = self.investment_raised["amount_in_cents"], 
             funding_target = self.investment_sought["amount_in_cents"] if self.investment_sought["amount_in_cents"] else 0 ,
             funding_min = 0,
+            funding_start = self.externally_approved_at if self.externally_approved_at else self.expires_at,
+            funding_end=self.expires_at,
             description = self.description,
             description_short = self.description,
             location = cc,

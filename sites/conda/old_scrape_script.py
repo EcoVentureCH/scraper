@@ -1,4 +1,5 @@
 import re
+from datetime import datetime
 
 from curl_cffi import requests
 
@@ -19,6 +20,8 @@ def main():
         'funding_current':      r"<p class=\"conda-knob-value-text\".*?>(.*?CHF)</p>",
         'funding_min':          r"Mindestinvestition:(\W+CHF\W+\d*?\.[\-\d])",
         'funding_target':       lambda bfs: scrape_functions.text_from_class(bfs, 'p', 'total-amount'),
+        'funding_end':          r'data-end="(.*?)"',
+        'funding_start':        lambda _: datetime(2000, 1, 1),
         'description':          r"<p class=\"text-white large italic text-shadow-dark\">(.*?)</p>",
         'description_short':    r"<p class=\"text-white large italic text-shadow-dark\">(.*?)</p>",
     }

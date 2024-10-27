@@ -1,4 +1,5 @@
 from pydantic import BaseModel, Field
+from datetime import datetime
 
 # what we want in the end
 class Project(BaseModel):
@@ -10,6 +11,9 @@ class Project(BaseModel):
     funding_current: int # in cents of that currency
     funding_min: int
     funding_target: int
+    funding_start: datetime
+    funding_end: datetime
     description: str | None
     description_short: str | None
     location: str
+    

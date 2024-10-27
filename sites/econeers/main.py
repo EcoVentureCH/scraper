@@ -14,6 +14,8 @@ class EconeersProject(BaseModel):
     threshold: int
     goal: int
     status: str
+    fundingStarts: str
+    fundingWillEnd: str
     
     def convert(self) -> Project:
         return Project(
@@ -25,6 +27,8 @@ class EconeersProject(BaseModel):
             funding_current = self.sum, 
             funding_min = self.threshold,
             funding_target = self.goal,
+            funding_start=self.fundingStarts,
+            funding_end=self.fundingWillEnd,
             description = "",
             description_short = "",
             location = "de",
