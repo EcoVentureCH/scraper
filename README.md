@@ -1,4 +1,4 @@
-#Scraper for <ecoventure.ch>
+# Scraper for ecoventure.ch projects
 
 ## Architecture
 
