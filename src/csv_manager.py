@@ -1,3 +1,7 @@
+'''
+TODO: will be replaced by real database
+
+'''
 import os
 import pandas as pd
 import math
@@ -20,6 +24,7 @@ CSV_COLUMNS = {
     'funding_min':          'string',
     'funding_target':       'string',
     'funding_current':      'string',
+    'funding_end':          'string',
     'location':             'string',
     'currency':             'string',
     'description':          'string',

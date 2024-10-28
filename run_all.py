@@ -59,6 +59,8 @@ def main():
         response.raise_for_status()
         print(f"INFO: reloaded projects successfully: {response.json()}")
     except requests.RequestException as e:
+        print(response)
+        print(response.content)
         print(f"ERROR: Failed to execute command: {e}")
 
     time.sleep(time_out_after_job)
