@@ -54,12 +54,12 @@ def main():
         else:
             print(f"{site}: no scripts found!")
 
+
+    response = requests.post('http://web:8000/api/reload-projects')        
     try:
-        response = requests.post('http://web:8000/api/reload-projects')
         response.raise_for_status()
         print(f"INFO: reloaded projects successfully: {response.json()}")
     except requests.RequestException as e:
-        print(response)
         print(response.content)
         print(f"ERROR: Failed to execute command: {e}")
 
